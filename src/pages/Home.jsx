@@ -16,31 +16,28 @@ const Home = ({ children }) => {
       link: "Settings",
     },
   ];
+
   return (
-    <div className="flex flex-col items-center gap-14 bg-indigo-200 h-screen">
-      <h1 className="text-6xl text-center font-extrabold tracking-wider">
+    <div className="flex flex-col items-center bg-indigo-100 min-h-screen py-8">
+      <h1 className="text-5xl font-extrabold text-indigo-800 tracking-wide mb-12">
         React Task
       </h1>
-      <ul className="flex justify-between gap-6 ">
-        {links.map((item, i) => {
-          return (
-            <Link key={i} to={item.link}>
-              <li
-                key={i}
-                className="bg-indigo-800 text-white px-4 py-2 rounded-xl"
-              >
-                {item.name}
-              </li>
-            </Link>
-          );
-        })}
+
+      {/* Navigation Links */}
+      <ul className="flex justify-center gap-6 mb-8">
+        {links.map((item, i) => (
+          <Link key={i} to={item.link}>
+            <li className="bg-indigo-700 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-indigo-800 transition">
+              {item.name}
+            </li>
+          </Link>
+        ))}
       </ul>
-      <div>
+
+      {/* Outlet Area */}
+      <div className="w-full max-w-4xl">
         <Outlet />
       </div>
-      <button className="bg-indigo-700 px-10 py-4 rounded-2xl text-white">
-        Next
-      </button>
     </div>
   );
 };
