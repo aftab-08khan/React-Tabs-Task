@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import Button from "../components/Button";
 
 const Details = () => {
@@ -12,6 +12,12 @@ const Details = () => {
 
   const [checkboxList, setCheckBoxList] = useState([]);
   const navigate = useNavigate();
+  useEffect(() => {
+    const savedData = JSON.parse(localStorage.getItem("formData"));
+    if (savedData?.skills) {
+      setCheckBoxList(savedData.skills);
+    }
+  }, []);
 
   const handleCheckbox = (e) => {
     const { checked, value } = e.target;
@@ -24,12 +30,12 @@ const Details = () => {
     e.preventDefault();
     const data = JSON.parse(localStorage.getItem("formData"));
 
-    localStorage.setItem(
-      "formData",
-      JSON.stringify({ ...data, skills: checkboxList })
-    );
-
     if (checkboxList.length >= 2) {
+      localStorage.setItem("detailsCompleted", "true");
+      localStorage.setItem(
+        "formData",
+        JSON.stringify({ ...data, skills: checkboxList })
+      );
       navigate("/Settings");
     } else {
       alert("Please select at least 2 skills.");
