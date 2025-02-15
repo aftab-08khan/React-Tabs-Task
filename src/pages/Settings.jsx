@@ -4,16 +4,14 @@ import { useNavigate } from "react-router-dom";
 const Settings = () => {
   const navigate = useNavigate();
   const [mode, setMode] = useState("");
-  console.log(mode, "mode");
 
   useEffect(() => {
     const savedData = JSON.parse(localStorage.getItem("formData"));
-    console.log(savedData?.mode, "geee");
-
     if (savedData?.mode) {
       setMode(savedData.mode);
     }
   }, []);
+
   const handleInputChange = (e) => {
     setMode(e.target.value);
   };
@@ -33,12 +31,12 @@ const Settings = () => {
   };
 
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 dark:bg-gray-900">
       <form
-        className="bg-white p-6 shadow-lg rounded-lg w-96"
+        className="bg-white dark:bg-gray-800 p-6 shadow-lg rounded-lg w-96"
         onSubmit={handleSubmit}
       >
-        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
+        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800 dark:text-white">
           Select Theme
         </h2>
 
@@ -48,14 +46,14 @@ const Settings = () => {
               type="radio"
               id="dark"
               name="theme"
-              value={mode}
+              value="dark"
               checked={mode === "dark"}
               onChange={handleInputChange}
               className="w-5 h-5 text-indigo-600 border-gray-300 focus:ring-indigo-500"
             />
             <label
               htmlFor="dark"
-              className="text-gray-700 font-medium cursor-pointer"
+              className="text-gray-700 dark:text-gray-300 font-medium cursor-pointer"
             >
               Dark Mode
             </label>
@@ -66,14 +64,14 @@ const Settings = () => {
               type="radio"
               id="light"
               name="theme"
-              value={mode}
+              value="light"
               checked={mode === "light"}
               onChange={handleInputChange}
               className="w-5 h-5 text-indigo-600 border-gray-300 focus:ring-indigo-500"
             />
             <label
               htmlFor="light"
-              className="text-gray-700 font-medium cursor-pointer"
+              className="text-gray-700 dark:text-gray-300 font-medium cursor-pointer"
             >
               Light Mode
             </label>
