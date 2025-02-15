@@ -31,7 +31,7 @@ const Settings = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div className="flex justify-center items-center">
       <form
         className="bg-white dark:bg-gray-800 p-6 shadow-lg rounded-lg w-96"
         onSubmit={handleSubmit}

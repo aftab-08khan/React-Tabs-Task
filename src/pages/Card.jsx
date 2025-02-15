@@ -1,80 +1,39 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Card = () => {
+  const navigate = useNavigate();
   const userData = JSON.parse(localStorage.getItem("formData")) || {};
 
+  const handleDelete = () => {
+    localStorage.clear();
+    navigate("/Profile");
+  };
+
   return (
-    <div className="flex justify-center items-center ">
+    <div className="flex flex-col justify-center items-center space-y-4">
       <div className="bg-white dark:bg-gray-800 shadow-2xl rounded-xl p-8 w-full max-w-md transform transition-all duration-500 hover:scale-105 hover:shadow-3xl">
         <h2 className="text-3xl font-bold text-gray-800 dark:text-white text-center mb-6">
           User Profile
         </h2>
 
         <div className="space-y-4">
-          {/* Age */}
           <div className="flex items-center space-x-3">
-            <span className="text-gray-500 dark:text-gray-400">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-            </span>
+            <span className="text-gray-500 dark:text-gray-400">📅</span>
             <p className="text-gray-700 dark:text-gray-300">
               <span className="font-semibold">Age:</span> {userData.age}
             </p>
           </div>
 
-          {/* Email */}
           <div className="flex items-center space-x-3">
-            <span className="text-gray-500 dark:text-gray-400">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                />
-              </svg>
-            </span>
+            <span className="text-gray-500 dark:text-gray-400">📧</span>
             <p className="text-gray-700 dark:text-gray-300">
               <span className="font-semibold">Email:</span> {userData.email}
             </p>
           </div>
 
-          {/* Theme Mode */}
           <div className="flex items-center space-x-3">
-            <span className="text-gray-500 dark:text-gray-400">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                />
-              </svg>
-            </span>
+            <span className="text-gray-500 dark:text-gray-400">🎨</span>
             <p className="text-gray-700 dark:text-gray-300">
               <span className="font-semibold">Theme Mode:</span>{" "}
               <span
@@ -87,7 +46,6 @@ const Card = () => {
             </p>
           </div>
 
-          {/* Skills */}
           <div>
             <p className="font-semibold text-gray-700 dark:text-gray-300 mb-2">
               Skills:
@@ -105,6 +63,14 @@ const Card = () => {
           </div>
         </div>
       </div>
+
+      {/* Delete Button */}
+      <button
+        onClick={handleDelete}
+        className="bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 mt-4"
+      >
+        Delete Data
+      </button>
     </div>
   );
 };
