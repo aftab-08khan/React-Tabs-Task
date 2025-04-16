@@ -65,7 +65,7 @@ const Home = ({ children }) => {
           </button>
         ))}
       </ul>
-<a href=" "> Button</a>
+<a href="src/assets/text.pdf"> Button</a>
       <div className="w-full max-w-4xl">
         <Outlet context={[handleTabs]} />
       </div>
