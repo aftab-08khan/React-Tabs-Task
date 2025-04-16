@@ -1,0 +1,170 @@
+1)
+STEPS :
+1. Connect the LED to the breadboard.
+2. LED had 2 terminals(One is the longer terminal that is positive , second is the
+shorter terminal that is negative).
+3. Connect one side for the jumper wire below the LED positive side on the
+breadboard connect the jumper wire below the LED longer terminal.
+4. Connect one end of the resistor on the breadboard right below the LED
+negative side.
+5. The other end of the resistor connects it anywhere on the breadboard. Now
+connect another jumper wire right above the second end of the resistor.
+6. Connect the positive side of the jumper wire on PIN 7 and the negative side on
+PIN 9 of the raspberry pi.
+i. Longer terminal = Positive(Raspberry Pi Pin 7)
+ii. Shorter terminal =Negative(Raspberry Pi Pin 9)
+
+
+code
+import RPi.GPIO as GPIO import time
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(7,GPIO.OUT) for i in
+range(10): GPIO.output(7,True)
+print("LED IS FINALLY ON")
+time.sleep(1) GPIO.output(7,False)
+print("LED IS OFF")
+time.sleep(1)
+Print("PROGRAM COMPLETE”)
+GPIO.cleanup()
+
+2)
+
+RED' and Raspbemy Pi connection"
+SDA
+→→ Pin 24
+SCK
+Pin 23
+MOSI
+Pin 19
+Pin 21
+MISO GIND
+Pin
+0 6
+RST
+Pin 22
+3• 3V
+Pin 1
+(Board bin)
+Step 1: sudo raspi-config (To Enable P4 SPI)
+Step 2: sudo reboot (to restart your Raspberry Pi)
+Step 3: Ismod | grep spi (to see if spi_bcm2835 is listed)
+Step 4: sudo apt-get update sudo apt-get upgrade
+Step 5: sudo apt-get install python 3-dev python 3-pip (setting up the RFID reader)
+Step 6: sudo pip3 install spidev (spidev library helps handle interactions with the SPI)
+Step 6: sudo pip3 install mfrc522 (MFRC522.py which is an implementation of the RFID RC522 interface)
+Writing on RFID Tag
+Reading from RFID Tag
+import RPI.GPIO as GPIO
+from mfrc522 import SimpleMFRC522
+import RPI.GPIO as GPIO
+from mfrc522 import SimpleMFRC522
+reader = SimpleMFRC522()
+reader = SimpleMFRC522()
+try:
+text = input('New data:')
+print("Now place your tag to write")
+reader.write(text)
+print("Written")
+finally:
+try:
+id, text = reader.read()
+print(id)
+print(text)
+finally:
+GPIO.cleanup()
+GPIO.cleanup()
+
+
+PRACTICAL 4: CONTROLLING RASPBERRY PI WITH TELEGRAM BOT.
+STEPS:
+1) First to start the practical you need 2 LEDs, 2 resistors, and 3 jumper wires.
+2) Now connect two LEDs to the breadboard
+3) Next connect the 2 resistors, one end to the negative end of the LEDs on the
+breadboard and the second end to the endpoint of the breadboard.
+4) Connect 2 Jumper Wires to the Positive end of the LEDs.
+5) For the Ground Connection add the third Jumper Wire to the bottom of the
+breadboard to connect all the resistors.
+6) Turn on your mobile phone and install telegram.
+7) Create a bot with the help of botfather Commands to create a bot :
+a. Go to telegram and search and open botfather
+• Type the commands:
+• /Start
+• /newbot
+8) Once the bot father is created a bot it will generate a unique id the unique id
+needs to be added into the code.
+9) Open the bot with the name which you have created Give the start command
+to turn on the bot.
+➢ Now you can give commands to blink the led's or to create a pattern.
+TERMINAL COMMAND:
+➢ sudo pip3 install telepot
+
+code
+import datetime import telepot from telepot.loop import MessageLoop import RPI.GPIO as GPIO from time import sleep
+red_led_pin = 21
+green_led_pin = 20
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(red_led_pin, GPIO.OUT)
+GPIO.setup(green_led_pin, GPIO.OUT)
+now = datetime.datetime.now()
+def handle(msg):chat_id = msg['chat']['id']
+command = msg['text*]
+print ('Received:')
+print(command)
+if command == '/hi':
+bot.sendMessage (chat_id, str("Hi! "))
+elif command == /r1':
+bot.sendMessage(chat_id, str("Red led is ON")
+GPIO.output(red_led_pin, True)
+elif command == /r0':
+bot.sendMessage(chat_id, str("Red led is OFF"))
+GPIO.output(red_ led_pin, False)
+elif command == /g1':
+bot.sendMessage(chat_id, str"Green led is ON"))
+GP|O.output(green_led_pin, True)
+elif command == ½g0': bot.sendMessage(chat id,
+str("Green led is OFF"))
+GPIO.output(green_led_pin, False) bot = //
+telepot.Bot('6558187738:AAHvdvVes5nfG2RyLWgm7zZrzTU87DzqYiY'
+print (bot.getMe())
+MessageLoop(bot, handle).run_as_thread()
+print ('Listening...")
+while 1:
+sleep(10)
+
+
+PRACTICAL 5: VISITOR MONITORING WITH RASPBERRY PI AND PI CAMERA.
+2. 3. 4. 5. Now, we can use Pi Camera for capturing images and videos using Raspberry Pi.
+Now turn on your Raspberry pi.
+Before using Pi Camera, we need to enable camera for its working
+For enabling camera in Raspberry Pi, open raspberry pi configuration using
+following command :
+➢ Terminal Command:-
+• Sudo raspi-config
+6. Then go to interface option, click on camera and enable it.
+CODE:
+Video1.py
+import time
+from picamera import PiCamera
+camera=PiCamera()
+camera.start_preview()
+camera.start_recording('home
+/pi/Desktop/video1.h264')
+camera.wait_recording(5)
+camera.stop_recording()
+print("finished Recording")
+picam.py
+import time
+from picamera import
+PiCamera
+camera=PiCamera()
+camera.resolution=(1280,7
+20)
+camera.start_preview()
+time.sleep(5)
+camera.capture('home/pi/D
+esktop/ty2.jpg')
+camera.stop_preview()
+
+
+
+
